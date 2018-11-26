@@ -19,7 +19,7 @@ def main():
         bus.sensor_select(BACK)
         prox = ProxInterface()
         distance = prox.read_prox()
-        print("Front: {} mm".format(distance))
+        print("Back: {} mm".format(distance))
         
         sleep(0.5)
         

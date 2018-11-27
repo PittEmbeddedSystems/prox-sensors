@@ -21,5 +21,5 @@ class MuxSwitcher(object):
         """
         Writes to the register n the I2C switch to select the desired sensor. Provide 1 for FRONT and 2 for BACK.
         """
-        bus.write_byte_data(MUX_ADDRESS, 1, sensorID)
+        self.bus.write_byte_data(MUX_ADDRESS, 1, sensorID)
         return self.bus.read_byte_data(MUX_ADDRESS, 0)

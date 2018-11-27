@@ -27,8 +27,10 @@ class ProxInterface(object):
         
         Returns distance between sensor and object in mm.
         """
-        prox.open()
-        prox.start_ranging(prox_range)
-        return self.prox.read_prox().get.distance()
+        self.prox.open()
+        self.prox.start_ranging(prox_range)
+        data = self.prox.get_distance()
+        self.prox.close()
+        return data
         
     

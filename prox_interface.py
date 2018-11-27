@@ -3,6 +3,7 @@ Implementation of interface to VL53L1X proximity sensor.
 """
 
 import VL53L1X
+from time import sleep
 
 SENSOR_ADDRESS = 0x29
 I2C_BUS = 1
@@ -29,7 +30,10 @@ class ProxInterface(object):
         """
         self.prox.open()
         self.prox.start_ranging(prox_range)
-        data = self.prox.get_distance()
+        sleep(0.1)
+        data = []
+        while(len(data)<=10):
+            data.append(self.prox.get_distance())
         self.prox.close()
         return data
         

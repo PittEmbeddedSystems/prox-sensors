@@ -1,4 +1,4 @@
-""" 
+"""
 A class that abstracts the proximity sensor hardware interface and allows for the simultaneous return of front and back sensor measurements for the PowerPlant project
 """
 
@@ -13,7 +13,7 @@ class ProxReader(object):
     """
     Implementation of ProxReader functionality which includes taking a measurement from both the front and back sensors at the same time, and the ability to select which units should be returned.
     """
-    
+
     def __init__(self, units):
         """
         Initializes the measurement with the desired units to return.
@@ -22,19 +22,19 @@ class ProxReader(object):
             'cm'
             'mm' (default)
         """
-        
+
         self.units = units
 
     def measure(self):
         """
         Takes measurement from front sensor and then switches to the back sensor. Though the measurements are not taken at the exact same time, the measurements should be close enough in time to serve the purpose of providing a distance measurement for the Power Plant project.
         """
-        
+
         bus = MuxSwitcher()
         bus.sensor_select(FRONT)
         prox = ProxInterface()
         front = prox.read_prox()
-        
+
         bus = MuxSwitcher()
         bus.sensor_select(BACK)
         prox = ProxInterface()

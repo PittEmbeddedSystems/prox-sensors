@@ -24,8 +24,8 @@ class ProxReader(object):
         """
         
         self.units = units
-        
-    def measure():
+
+    def measure(self):
         """
         Takes measurement from front sensor and then switches to the back sensor. Though the measurements are not taken at the exact same time, the measurements should be close enough in time to serve the purpose of providing a distance measurement for the Power Plant project.
         """
@@ -39,17 +39,17 @@ class ProxReader(object):
         bus.sensor_select(BACK)
         prox = ProxInterface()
         back = prox.read_prox()
-        if units == 'mm':
+        if self.units == 'mm':
             front = front/1
             back = back/1
-        elif units == 'cm':
+        elif self.units == 'cm':
             front = front/10
-            back = back/10            
-        elif units == 'mm':
+            back = back/10
+        elif self.units == 'mm':
             front = front/100
             back = back/100
-        else # default unit is 'mm'
+        else: # default unit is 'mm'
             front = front/1
-            back = back/1 
-            
-        return measurement = [front, back]
+            back = back/1
+
+        return [front, back]

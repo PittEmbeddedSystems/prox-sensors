@@ -3,11 +3,7 @@
 
 
 ## HW test scripts
-* multi_prox
-* mux_status
-* mux_switcher
-* prox_data
-* prox_printer (An example of prox interface usage)
+* prox_printer (An example of prox reader usage)
 
 ## Proximity sensor interface
 ### sensor_switch

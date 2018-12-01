@@ -24,21 +24,20 @@ class ProxReader(object):
         """
 
         self.units = units
+        self.bus  = MuxSwitcher() 
+        self.bus.sensor_select(FRONT)
+        self.prox = ProxInterface()
 
     def measure(self):
         """
         Takes measurement from front sensor and then switches to the back sensor. Though the measurements are not taken at the exact same time, the measurements should be close enough in time to serve the purpose of providing a distance measurement for the Power Plant project.
         """
 
-        bus = MuxSwitcher()
-        bus.sensor_select(FRONT)
-        prox = ProxInterface()
-        front = prox.read_prox()
+        self.bus.sensor_select(FRONT)
+        front = self.prox.read_prox()
 
-        bus = MuxSwitcher()
-        bus.sensor_select(BACK)
-        prox = ProxInterface()
-        back = prox.read_prox()
+        self.bus.sensor_select(BACK)
+        back = self.prox.read_prox()
         if self.units == 'mm':
             front = front/1
             back = back/1

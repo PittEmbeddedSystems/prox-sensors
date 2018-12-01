@@ -10,14 +10,15 @@ BACK = 2
 
 def main():
     bus = MuxSwitcher()
+    bus.sensor_select(FRONT)
+    prox = ProxInterface()
+
     while True:
         bus.sensor_select(FRONT)
-        prox = ProxInterface()
         distance = prox.read_prox()
         print("Front: {} mm".format(distance))
         
         bus.sensor_select(BACK)
-        prox = ProxInterface()
         distance = prox.read_prox()
         print("Back: {} mm".format(distance))
         

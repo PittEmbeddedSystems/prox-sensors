@@ -26,7 +26,9 @@ class ProxReader(object):
         self.units = units
         self.bus  = MuxSwitcher() 
         self.bus.sensor_select(FRONT)
-        self.prox = ProxInterface()
+        self.prox_front = ProxInterface()
+        self.bus.sensor_select(BACK)
+        self.prox_back = ProxInterface()
 
     def measure(self):
         """
@@ -34,10 +36,10 @@ class ProxReader(object):
         """
 
         self.bus.sensor_select(FRONT)
-        front = self.prox.read_prox()
+        front = self.prox_front.read_prox()
 
         self.bus.sensor_select(BACK)
-        back = self.prox.read_prox()
+        back = self.prox_back.read_prox()
         if self.units == 'mm':
             front = front/1
             back = back/1
